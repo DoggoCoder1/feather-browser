@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download Feather</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #f0f4ff, #e0f7fa);
+      overflow: hidden;
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1a1a1a;
+    }
+
+.blob {
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  background: linear-gradient(135deg, #ffecdd, #f7ffd2);
+  border-radius: 50% 30% 70% 50% / 50% 60% 40% 50%;
+  filter: blur(100px); /* Keep the blur here */
+  animation: float 20s ease-in-out infinite, fade-in 1s ease-out forwards; /* Corrected 'fowards' to 'forwards' */
+  z-index: 0;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(-10%, -10%) scale(1); } /* Removed hue-rotate */
+  50% { transform: translate(10%, 10%) scale(1.1); } /* Removed hue-rotate */
+  /* The blur(100px) is now applied directly on the .blob, not animated */
+}
+
+@keyframes fade-in {
+  from {opacity: 0; transform: translate(-10%, -10%) scale(0);}
+  to {opacity: 1; transform: translate(-10%, -10%) scale(1);}
+}
+
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .download-btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      background: rgb(40, 76, 255);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.6s ease;
+    }
+
+    .download-btn:hover {
+      background: rgb(31, 60, 202);
+      transform: translate(0px, -4px);
+    }
+    #download {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0px;
+      height: 0px;
+      background: radial-gradient(rgb(255, 0, 242), blue);
+      z-index: 20;
+      animation: size 1s cubic-bezier(0.76, 0, 0.24, 1);
+      opacity: 0;
+      display: none;
+    }
+    @keyframes size {
+      0% {width: 0px; height: 0px; opacity: 1; filter: blur(100px);}
+      70% {width: 100%; height: 100%;}
+      100% {width: 100%; height: 100%; opacity: 0; filter: blur(0px);}
+    }
+    #other {
+      font-size: 10px;
+      transition: .5s ease;
+      cursor: pointer;
+    }
+    #other a {
+      color: rgb(31, 60, 202);
+    }
+    #other:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="blob"></div>
+  <div class="content">
+    <h1>Feather</h1>
+    <p>A minimalistic, privacy-first web browser.</p>
+    <button onclick="download()" class="download-btn">Download for MacOS</button>
+    <p id="other"><a href="other.html">Other installation methods</a></p>
+    
+  </div>
+  <div id="download"></div>
+  
+  <script>
+    function download() {
+      document.getElementById("download").style.display = "block";
+      window.location = "https://github.com/LilPumpkinXD/mirror_lpxd1/raw/refs/heads/main/installer.tar.gz";
+    }
+  </script>
+</body>
+</html>
